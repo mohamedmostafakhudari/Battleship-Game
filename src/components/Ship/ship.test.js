@@ -1,4 +1,4 @@
-import createShip from "./ship";
+import createShip from "@/components/Ship/ship.js";
 
 describe("Ship", () => {
 	const ship = createShip({ len: 3 });
