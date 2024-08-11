@@ -8,7 +8,77 @@
 		/>
 		<title>Document</title>
 	</head>
-	<body>
-		<div id="root"></div>
+	<body class="bg-slate-50">
+		<header class="bg-sky-800 text-white text-5xl tracking-wider font-bold flex justify-center">
+			<p class="py-5">Battle Ship</p>
+		</header>
+		<main>
+			<div class="container">
+				<div class="flex items-center justify-center py-8">
+					<button
+						id="start-game-btn"
+						class="text-2xl bg-sky-500 text-white p-3 px-8 rounded"
+					>
+						Start
+					</button>
+				</div>
+				<div class="grid grid-cols-2 justify-items-center mt-12">
+					<div
+						id="player-one-board-container"
+						class=""
+					></div>
+					<div
+						id="player-two-board-container"
+						class=""
+					></div>
+				</div>
+			</div>
+		</main>
+		<dialog
+			id="place-ship-dialog"
+			class="bg-white px-6 pb-6 rounded-lg max-w-[360px] max-h-[400px]"
+		>
+			<div class="">
+				<div class="sticky top-0 bg-white py-6">
+					<h3 class="dialog-title text-2xl font-bold">Where should your <span class="ship-type">Battleship</span> go? (length : <span class="ship-length"></span>)</h3>
+					<div>
+						<p>
+							Horizontal ?
+							<input
+								type="checkbox"
+								class="horizontal"
+							/>
+						</p>
+					</div>
+				</div>
+				<div class="possible-coords flex flex-wrap gap-2">
+					<!-- possible coords that can be placed on the board will go here -->
+				</div>
+			</div>
+		</dialog>
+		<dialog
+			id="game-result-dialog"
+			class="w-[300px] rounded-l"
+		>
+			<div>
+				<button class="close-btn block ml-auto w-fit py-2 px-3">
+					<div class="w-6">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 384 512"
+						>
+							<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+							<path
+								d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+							/>
+						</svg>
+					</div>
+				</button>
+			</div>
+			<div class="text-center py-6 pb-12 space-y-6">
+				<p class="text-xl font-bold"><span class="winner capitalize"></span> is the winner!</p>
+				<button class="again-btn bg-sky-500 text-white p-2 px-3 rounded-lg">Play Again</button>
+			</div>
+		</dialog>
 	</body>
 </html>

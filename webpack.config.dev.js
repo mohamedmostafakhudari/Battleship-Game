@@ -9,13 +9,9 @@ module.exports = merge(commonConfig, {
 		static: {
 			directory: "./dist",
 		},
+		watchFiles: ["src/**/*"],
 	},
 	module: {
-		rules: [
-			{
-				test: /\.css$/i,
-				use: ["style-loader", "css-loader", "postcss-loader"],
-			},
-		],
+		rules: [],
 	},
 });

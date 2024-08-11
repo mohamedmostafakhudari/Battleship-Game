@@ -1,28 +1,40 @@
-import createGameBoard from "@/components/GameBoard/gameboard.js";
-import createPlayer from "@/components/Player/player.js";
-import Events from "@/events";
+import { HumanPlayer, ComputerPlayer } from "@/components/Player/player";
 
-jest.mock("../../../__mocks__/pubsub.js");
-jest.mock("@/components/GameBoard/gameboard.js", () => {
-	return jest.fn().mockImplementation(() => {
-		return {
-			placeShip: jest.fn(),
-		};
-	});
-});
-describe("createPlayer", () => {
-	let player;
+describe("Player", () => {
+	let humanPlayer;
+	let computerPlayer;
 	beforeEach(() => {
-		const gameboardInstance = createGameBoard();
-		const eventsInstance = new Events();
-		player = createPlayer({ type: "human", gameboard: gameboardInstance, events: eventsInstance });
-	});
-	afterEach(() => {
-		jest.clearAllMocks();
+		humanPlayer = new HumanPlayer();
+		computerPlayer = new ComputerPlayer();
 	});
 
-	test("hello", () => {
-		console.log(player);
-		expect(1).toBe(1);
+	test("a human player should be able to trigger an attack on a specific coords on the board", () => {
+		const coords = {
+			y: 0,
+			x: 0,
+		};
+		const board = humanPlayer.boardInstance.board;
+
+		humanPlayer.attack(coords);
+		expect(board[coords.y][coords.x]).toBe("x");
+	});
+	test("a computer player should be able to trigger an attack on a random coords on the board", () => {
+		const computerBoardBeforeAttack = JSON.stringify(computerPlayer.boardInstance.board);
+
+		computerPlayer.attack();
+
+		const computerBoardAfterAttack = JSON.stringify(computerPlayer.boardInstance.board);
+
+		expect(computerBoardBeforeAttack === computerBoardAfterAttack).toBe(false);
+	});
+	test("each player should have its own board", () => {
+		const coords = {
+			y: 0,
+			x: 0,
+		};
+		const computerPlayerBoard = computerPlayer.boardInstance.board;
+		humanPlayer.attack(coords);
+
+		expect(computerPlayerBoard[coords.y][coords.x]).toBe("");
 	});
 });
