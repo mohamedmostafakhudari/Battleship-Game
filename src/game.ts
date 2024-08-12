@@ -189,6 +189,8 @@ class Game {
 		this.currentTurn = 1;
 		this.winner = null;
 		this.gameOver = false;
+		const horizontalCheckbox = this.placeShipDialog?.querySelector(".horizontal") as HTMLInputElement;
+		horizontalCheckbox.checked = false;
 		this.placementMode = "vertical";
 	}
 	closeGameResultDialog() {
